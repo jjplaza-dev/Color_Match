@@ -1,18 +1,18 @@
 .colorQueue {
-    width: 80%;
+    width: 50%;
     margin-bottom: 20px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 0px;
-    border: 8px dashed black;
+    padding: 10px 10px;
+    border: 2px dashed black;
 
-    @media (min-width: 768px) and (max-width: 1124px) { padding: 5px 0px;  border: 5px dashed black;} 
-    @media (max-width: 767px) { padding: 1px 0px;  border: 2px dashed black; }  
+    @media (min-width: 768px) and (max-width: 1124px) { padding: 5px 5px;  border: 2px dashed black; width: 80%;} 
+    @media (max-width: 767px) { padding: 1px 1px;  border: 1px dashed black; width: 100%; }  
 
     * {
-        width: 100%;
+        width: 50%;
         aspect-ratio: 1/1;
         border-radius: 50%;
         margin: 1%;
@@ -20,6 +20,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-    }
+
+        @media (min-width: 768px) and (max-width: 1124px) { } 
+        @media (max-width: 767px) {} 
+    }   
  
 }

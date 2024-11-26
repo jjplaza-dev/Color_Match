@@ -15,9 +15,9 @@ function MainContent() {
     }
     return colorArr;
   }
+
   useEffect(() => {
     shuffleArray(colorArr); // Execute shuffle once
-    console.log(colorArr);
   }, []);
 
   // ---------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ function MainContent() {
       for (let i = 1; i < boxes.length; i++) {
         if (boxes[i].bgColor !== firstColor) {
           allSame = false;
-          document.getElementById("gameStatus").innerText = "Keep Going!";
+          document.getElementById("gameStatus").innerText = " ";
         }
       }
       setAllColorsSame(allSame);
@@ -69,9 +69,24 @@ function MainContent() {
 
   /********************************************************/
 
+  const [output, setOutput] = useState();
+  const [outputArr, setOutputArr] = useState();
+
+  const updateOutput = () => {
+    setOutput(document.getElementById("inputHere").value);
+  };
+  const addInput = () => {
+    setOutputArr((...allInput) => [
+      ...allInput,
+      " | ",
+      document.getElementById("inputHere").value,
+    ]);
+  };
+
   return (
     <div className={styles.testDivBox}>
       <div className={styles.testProper}>
+        <h4 id="gameStatus">sure</h4>
         {<ColorQueue colorArr={colorArr} />}
         <div className={styles.mainColorBox} key={123} id="mainColorBox">
           {boxes.map((e) => (
@@ -84,7 +99,11 @@ function MainContent() {
         </div>
 
         <div className={styles.buttonsBox}>
-          <h4 id="gameStatus">sure</h4>
+          <input onChange={updateOutput} id="inputHere" />
+          <p id="outputHere">{output}</p>
+          <button onClick={addInput}>add</button>
+
+          <div>{outputArr}</div>
         </div>
       </div>
     </div>
