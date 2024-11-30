@@ -102,6 +102,9 @@ function MainContent() {
           <input onChange={updateOutput} id="inputHere" />
           <p id="outputHere">{output}</p>
           <button onClick={addInput}>add</button>
+          <button>
+            <a href="/main">Reset</a>
+          </button>
 
           <div>{outputArr}</div>
         </div>
