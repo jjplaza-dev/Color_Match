@@ -9,16 +9,13 @@ function App() {
     <>
       <nav>
         <ui>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/main">Main</a>
-          </li>
+          <a href="/login">Home</a>
+
+          <a href="/main">Main</a>
         </ui>
       </nav>
       <Routes>
-        <Route path="/" element={<LoginPage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/main" element={<MainContent />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
       </Routes>

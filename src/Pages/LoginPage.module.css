@@ -1,0 +1,74 @@
+.LoginPage {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+
+
+    .loginPageBox {
+        width: 40vw;
+        height: 75vh;
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        box-shadow: 5px 5px 10px 1px rgba(58, 58, 58, 0.2);
+
+        @media (min-width: 768px) and (max-width: 1124px) {width: 70vw; } 
+        @media (max-width: 767px) { width: 90vw;}          
+
+        * {
+            width: 100%;
+            margin: 2vh 0px; 
+            box-sizing: border-box;
+        }
+        .loginBtn {
+            width: 30%;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid black;
+            transition: all 0.1s ease;
+        }
+        .loginBtn:hover {
+            background-color: rgb(187, 187, 187);
+        }
+        .registerBtn {
+            background-color: inherit;
+            border: 0;
+            
+        }
+       .usernameBox {
+            width: 50%;
+
+            @media (min-width: 768px) and (max-width: 1124px) {width: 70%; } 
+            @media (max-width: 767px) { width: 80%;}  
+       }
+       .passwordBox{
+            width: 50%;
+
+            @media (min-width: 768px) and (max-width: 1124px) {width: 70%; } 
+            @media (max-width: 767px) { width: 80%;}  
+       }
+       input {
+        width: 100%;
+        margin: 10px 0px 40px 0px;
+        background-color: rgb(255, 255, 255);
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: 700;
+        transition: all 0.1s ease-in;
+       border: 1px solid black;
+    }
+    
+        input:focus {
+        outline: none;
+        background-color: rgb(245, 245, 245);
+        box-shadow: 5px 5px 5px 1px rgba(34, 34, 34, 0.3);
+    }
+    }
+}
+
