@@ -32,6 +32,10 @@ function RegisterPage() {
     localStorage.setItem("allAccounts", "");
   };
 
+  const clearAccounts = () => {
+    localStorage.clear();
+  };
+
   useEffect(() => {
     if (!localStorage) {
       return;
@@ -49,12 +53,12 @@ function RegisterPage() {
       <section className={styles.RegisterPage}>
         <div className={styles.registerPageBox}>
           <div className={styles.usernameBox}>
-            <label>Username:</label>
+            <label>Username</label>
             <br />
             <input id="usernameInput" />
           </div>
           <div className={styles.passwordBox}>
-            <label>Password:</label>
+            <label>Password</label>
             <br />
             <input id="passwordInput" type="password" />
           </div>
@@ -73,10 +77,11 @@ function RegisterPage() {
 
           <button className={styles.loginBtn}>
             <a href="/login" style={{ textDecoration: "none" }}>
-              already have an account?
+              Already have an account?{" "}
             </a>
             <a href="/login">Login</a>
           </button>
+          <button onClick={clearAccounts}>Reset</button>
         </div>
       </section>
     </>

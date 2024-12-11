@@ -1,9 +1,12 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import styles from "./LoginPage.module.css";
 import RegisterPage from "./RegisterPage";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  let registered = false;
+  const navigate = useNavigate();
+  const [registered, setRegistered] = useState(true);
+
   console.log(JSON.parse(localStorage.getItem("allAccounts")));
   const check = () => {
     console.log(
@@ -11,10 +14,13 @@ function LoginPage() {
     );
     JSON.parse(localStorage.getItem("allAccounts")).allAccounts.forEach((e) => {
       if (document.getElementById("loginUsername").value == e.username) {
-        registered = true;
-        console.log("IN");
+        setRegistered(true);
+
+        console.log(registered);
+        navigate("/main");
       } else {
-        console.log("OUT");
+        setRegistered(false);
+        console.log(registered);
       }
     });
     console.log(registered);
@@ -24,12 +30,13 @@ function LoginPage() {
     <section className={styles.LoginPage}>
       <div className={styles.loginPageBox}>
         <div className={styles.usernameBox}>
-          <label>Username:</label>
+          <label>Username</label>
           <br />
-          <input id="loginUsername" />
+          <input id="loginUsername" />{" "}
+          <UnregisteredPopUp isRegistered={registered} />
         </div>
         <div className={styles.passwordBox}>
-          <label>Password:</label>
+          <label>Password</label>
           <br />
           <input id="loginPassword" type="password" />
         </div>
@@ -38,7 +45,7 @@ function LoginPage() {
         </button>
         <button className={styles.registerBtn}>
           <a href="/register" style={{ textDecoration: "none" }}>
-            don't have an account yet?{" "}
+            Don't have an account yet?{" "}
           </a>
           <a href="/register">Register</a>
         </button>
@@ -46,5 +53,11 @@ function LoginPage() {
     </section>
   );
 }
+
+const UnregisteredPopUp = ({ isRegistered }) => {
+  if (!isRegistered) {
+    return <div className={styles.unregisterPopUp}>No Account Detected</div>;
+  }
+};
 
 export default LoginPage;
