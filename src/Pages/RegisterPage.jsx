@@ -5,6 +5,7 @@ import styles from "./RegisterPage.module.css";
 function RegisterPage() {
   const [allAccounts, setAllAccounts] = useState([]);
   const [registerAcc, setRegisterAcc] = useState("");
+  const [passwordExist, setPasswordExist] = useState(true);
 
   const persistData = (thisAcc) => {
     localStorage.setItem(
@@ -14,16 +15,24 @@ function RegisterPage() {
   };
 
   const registerAccount = (user, pass) => {
-    const newAccs = [...allAccounts, { username: user, password: pass }];
-    setRegisterAcc((registerAcc) => [
-      ...registerAcc,
-      {
-        user: user,
-        pass: pass,
-      },
-    ]);
-    persistData(newAccs);
-    console.log(JSON.parse(localStorage.getItem("allAccounts")));
+    if (user.trim() === "" || pass.trim() === "") {
+      console.log("Password or Username is Empty");
+      if (pass.trim() === "") {
+        setPasswordExist(false);
+      }
+    } else {
+      setPasswordExist(true);
+      const newAccs = [...allAccounts, { username: user, password: pass }];
+      setRegisterAcc((registerAcc) => [
+        ...registerAcc,
+        {
+          user: user,
+          pass: pass,
+        },
+      ]);
+      persistData(newAccs);
+      console.log(JSON.parse(localStorage.getItem("allAccounts")));
+    }
   };
   console.log(registerAcc);
 
@@ -61,6 +70,7 @@ function RegisterPage() {
             <label>Password</label>
             <br />
             <input id="passwordInput" type="password" />
+            <NoPassword isPasswordInputEmpty={!passwordExist} />
           </div>
 
           <button
@@ -87,5 +97,11 @@ function RegisterPage() {
     </>
   );
 }
+
+const NoPassword = ({ isPasswordInputEmpty }) => {
+  if (isPasswordInputEmpty) {
+    return <div className={styles.noPasswordPopUp}> No Password Detected</div>;
+  }
+};
 
 export default RegisterPage;

@@ -82,3 +82,13 @@
     position: fixed;
     bottom: 0px;
 }
+.noPasswordPopUp {
+    width: fit-content;
+    height: 20px;
+    position: absolute;
+    color: rgb(167, 18, 18);
+    margin: 0;
+    top: 0;
+    right: 0;
+}
+
