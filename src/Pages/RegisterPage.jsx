@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "./RegisterPage.module.css";
 
 function RegisterPage() {
-  const [allAccounts, setAllAccounts] = useState([
-    { username: "admin", password: "admin279" },
-  ]);
+  const [allAccounts, setAllAccounts] = useState([]);
   const [registerAcc, setRegisterAcc] = useState("");
   const [passwordExist, setPasswordExist] = useState(true);
 
@@ -38,13 +36,10 @@ function RegisterPage() {
   };
   console.log(registerAcc);
 
-  const resetAll = () => {
-    setRegisterAcc("");
-    localStorage.setItem("allAccounts", "");
-  };
-
   const clearAccounts = () => {
     localStorage.clear();
+    const newAccs = [{ username: "admin", password: "admin" }];
+    persistData(newAccs);
   };
 
   useEffect(() => {
