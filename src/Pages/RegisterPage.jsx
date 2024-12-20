@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import styles from "./RegisterPage.module.css";
 
 function RegisterPage() {
-  const [allAccounts, setAllAccounts] = useState([]);
+  const [allAccounts, setAllAccounts] = useState([
+    { username: "admin", password: "admin279" },
+  ]);
   const [registerAcc, setRegisterAcc] = useState("");
   const [passwordExist, setPasswordExist] = useState(true);
 
