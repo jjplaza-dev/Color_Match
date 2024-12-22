@@ -8,12 +8,12 @@ function LoginPage() {
   const [registered, setRegistered] = useState(true);
 
   console.log(JSON.parse(localStorage.getItem("allAccounts")));
-  const check = () => {
+  const check = (loginUser, loginPass) => {
     console.log(
       JSON.parse(localStorage.getItem("allAccounts")).allAccounts[0].username
     );
     JSON.parse(localStorage.getItem("allAccounts")).allAccounts.forEach((e) => {
-      if (document.getElementById("loginUsername").value == e.username) {
+      if (loginUser == e.username && loginPass === e.password) {
         setRegistered(true);
 
         console.log(registered);
@@ -40,7 +40,15 @@ function LoginPage() {
           <br />
           <input id="loginPassword" type="password" />
         </div>
-        <button className={styles.loginBtn} onClick={check}>
+        <button
+          className={styles.loginBtn}
+          onClick={() =>
+            check(
+              document.getElementById("loginUsername").value,
+              document.getElementById("loginPassword").value
+            )
+          }
+        >
           <a>Login</a>
         </button>
         <button className={styles.registerBtn}>
