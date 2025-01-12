@@ -15,11 +15,17 @@ function LoginPage() {
     JSON.parse(localStorage.getItem("allAccounts")).allAccounts.forEach((e) => {
       if (loginUser == e.username && loginPass === e.password) {
         setRegistered(true);
+        if (e.username == "admin") {
+          console.log("Welcome Administrator!");
+          navigate("/admin"); //admin page here
+        } else {
+          navigate("/main");
+        }
 
         console.log(registered);
-        navigate("/main");
       } else {
         setRegistered(false);
+
         console.log(registered);
       }
     });
