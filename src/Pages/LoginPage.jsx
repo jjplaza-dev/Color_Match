@@ -4,9 +4,11 @@ import RegisterPage from "./RegisterPage";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const [adminLoggedIn, setAdminLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [registered, setRegistered] = useState(true);
 
+  console.log(JSON.parse(localStorage.getItem("isAdmin")));
   console.log(JSON.parse(localStorage.getItem("allAccounts")));
   const check = (loginUser, loginPass) => {
     console.log(
@@ -16,20 +18,16 @@ function LoginPage() {
       if (loginUser == e.username && loginPass === e.password) {
         setRegistered(true);
         if (e.username == "admin") {
-          console.log("Welcome Administrator!");
+          setAdminLoggedIn(true);
+          localStorage.setItem("isAdmin", true);
           navigate("/admin"); //admin page here
         } else {
           navigate("/main");
         }
-
-        console.log(registered);
       } else {
         setRegistered(false);
-
-        console.log(registered);
       }
     });
-    console.log(registered);
   };
 
   return (
