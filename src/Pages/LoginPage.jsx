@@ -4,24 +4,21 @@ import RegisterPage from "./RegisterPage";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  const [adminLoggedIn, setAdminLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [registered, setRegistered] = useState(true);
 
   console.log(JSON.parse(localStorage.getItem("isAdmin")));
   console.log(JSON.parse(localStorage.getItem("allAccounts")));
+
   const check = (loginUser, loginPass) => {
-    console.log(
-      JSON.parse(localStorage.getItem("allAccounts")).allAccounts[0].username
-    );
     JSON.parse(localStorage.getItem("allAccounts")).allAccounts.forEach((e) => {
       if (loginUser == e.username && loginPass === e.password) {
         setRegistered(true);
         if (e.username == "admin") {
-          setAdminLoggedIn(true);
           localStorage.setItem("isAdmin", true);
           navigate("/admin"); //admin page here
         } else {
+          localStorage.setItem("currentUserPin", e.userPin);
           navigate("/main");
         }
       } else {
@@ -42,7 +39,19 @@ function LoginPage() {
         <div className={styles.passwordBox}>
           <label>Password</label>
           <br />
-          <input id="loginPassword" type="password" />
+          <input
+            id="loginPassword"
+            type="password"
+            onKeyDown={() => {
+              if (event.key === "Enter") {
+                // TYPING in input field then pressing Enter
+                check(
+                  document.getElementById("loginUsername").value,
+                  document.getElementById("loginPassword").value
+                );
+              }
+            }}
+          />
         </div>
         <button
           className={styles.loginBtn}

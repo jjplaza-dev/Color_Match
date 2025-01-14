@@ -75,13 +75,6 @@ function MainContent() {
   const updateOutput = () => {
     setOutput(document.getElementById("inputHere").value);
   };
-  const addInput = () => {
-    setOutputArr((...allInput) => [
-      ...allInput,
-      " | ",
-      document.getElementById("inputHere").value,
-    ]);
-  };
 
   return (
     <div className={styles.testDivBox}>
@@ -101,7 +94,8 @@ function MainContent() {
         <div className={styles.buttonsBox}>
           <input onChange={updateOutput} id="inputHere" />
           <p id="outputHere">{output}</p>
-          <button onClick={addInput}>add</button>
+
+          <p>{localStorage.getItem("currentUserPin")}</p>
           <button>
             <a href="/main">Reset</a>
           </button>

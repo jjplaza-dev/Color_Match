@@ -22,7 +22,15 @@ function RegisterPage() {
       }
     } else {
       setPasswordExist(true);
-      const newAccs = [...allAccounts, { username: user, password: pass }];
+      const randomPin = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
+      const userPins = JSON.parse(localStorage.getItem("userPins")) || [];
+      userPins.push(randomPin);
+      localStorage.setItem("userPins", JSON.stringify(userPins));
+
+      const newAccs = [
+        ...allAccounts,
+        { username: user, password: pass, userPin: randomPin },
+      ];
       setRegisterAcc((registerAcc) => [
         ...registerAcc,
         {
@@ -40,6 +48,10 @@ function RegisterPage() {
     localStorage.clear();
     const newAccs = [{ username: "admin", password: "admin" }];
     persistData(newAccs);
+  };
+  const checkAccounts = () => {
+    console.log(JSON.parse(localStorage.getItem("allAccounts")));
+    console.log(JSON.parse(localStorage.getItem("userPins")));
   };
 
   useEffect(() => {
@@ -89,6 +101,7 @@ function RegisterPage() {
             <a href="/login">Login</a>
           </button>
           <button onClick={clearAccounts}>Reset</button>
+          <button onClick={checkAccounts}>Check</button>
         </div>
       </section>
     </>
