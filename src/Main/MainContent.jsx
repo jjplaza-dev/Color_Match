@@ -5,6 +5,10 @@ import { v4 as uuid } from "uuid";
 
 function MainContent() {
   const [colorArr, setColorArr] = useState(["green", "blue", "red", "yellow"]);
+  const [allPins, setAllPins] = useState([]);
+  // ---------------------------------------------------------------------------
+
+  console.log(allPins);
 
   // Shuffles colorArr --------------------------------------------------------------------
 
@@ -17,6 +21,7 @@ function MainContent() {
   }
 
   useEffect(() => {
+    setAllPins(localStorage.getItem("userPins"));
     shuffleArray(colorArr); // Execute shuffle once
   }, []);
 
