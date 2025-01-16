@@ -47,11 +47,13 @@ function RegisterPage() {
   const clearAccounts = () => {
     localStorage.clear();
     const newAccs = [{ username: "admin", password: "admin" }];
+    localStorage.setItem("userProgressData", 0);
     persistData(newAccs);
   };
   const checkAccounts = () => {
     console.log(JSON.parse(localStorage.getItem("allAccounts")));
     console.log(JSON.parse(localStorage.getItem("userPins")));
+    console.log(JSON.parse(localStorage.getItem("userProgressData")));
   };
 
   useEffect(() => {

@@ -6,11 +6,25 @@ import { v4 as uuid } from "uuid";
 function MainContent() {
   const [colorArr, setColorArr] = useState(["green", "blue", "red", "yellow"]);
   const [allPins, setAllPins] = useState([]);
-  // ---------------------------------------------------------------------------
+
+  // Retrieve user progress data and current user pin from localStorage
+  const userProgressData =
+    JSON.parse(localStorage.getItem("userProgressData")) || [];
+  const currentUserPin = JSON.parse(localStorage.getItem("currentUserPin"));
+
+  // Checks if PIN already exists | Create a new object for User Progress---------
+
+  // Check if currentUserPin is not already in userProgressData
+  if (!userProgressData.includes(currentUserPin)) {
+    // If not, push currentUserPin to userProgressData
+    userProgressData.push(currentUserPin);
+    // Update localStorage with the new userProgressData
+    localStorage.setItem("userProgressData", JSON.stringify(userProgressData));
+  }
 
   console.log(allPins);
 
-  // Shuffles colorArr --------------------------------------------------------------------
+  // Shuffles colorArr ------------------------------------------------------------
 
   function shuffleArray(colorArr) {
     for (let i = colorArr.length - 1; i > 0; i--) {
