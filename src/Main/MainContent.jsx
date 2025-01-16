@@ -12,12 +12,18 @@ function MainContent() {
     JSON.parse(localStorage.getItem("userProgressData")) || [];
   const currentUserPin = JSON.parse(localStorage.getItem("currentUserPin"));
 
-  // Checks if PIN already exists | Create a new object for User Progress---------
-
   // Check if currentUserPin is not already in userProgressData
-  if (!userProgressData.includes(currentUserPin)) {
-    // If not, push currentUserPin to userProgressData
-    userProgressData.push(currentUserPin);
+  if (!userProgressData.some((item) => item.pin === currentUserPin)) {
+    // Create an object with currentUserPin, completedBox, and timeToFinish
+    const newProgressEntry = {
+      pin: currentUserPin,
+      completedBox: 0, // Default value
+      timeToFinish: null, // Default value, can be set to a specific time later
+    };
+
+    // Push the new progress entry to userProgressData
+    userProgressData.push(newProgressEntry);
+
     // Update localStorage with the new userProgressData
     localStorage.setItem("userProgressData", JSON.stringify(userProgressData));
   }
