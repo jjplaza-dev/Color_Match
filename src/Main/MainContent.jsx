@@ -28,7 +28,22 @@ function MainContent() {
     localStorage.setItem("userProgressData", JSON.stringify(userProgressData));
   }
 
-  console.log(allPins);
+  // Find the object corresponding to the currentUserPin
+  const currentUserProgress = userProgressData.find(
+    (item) => item.pin === currentUserPin
+  );
+
+  // Log the entire object
+  if (currentUserProgress) {
+    console.log("Current User Progress:", currentUserProgress);
+  } else {
+    console.log("No progress found for this user pin.");
+  }
+
+  const completeBox = () => {
+    currentUserProgress.completedBox++;
+    console.log("Current User Progress:", currentUserProgress);
+  };
 
   // Shuffles colorArr ------------------------------------------------------------
 
@@ -72,7 +87,7 @@ function MainContent() {
     );
   };
 
-  const [allColorsSame, setAllColorsSame] = useState(true);
+  const [allColorsSame, setAllColorsSame] = useState(false);
 
   useEffect(() => {
     if (boxes.length < 25) {
@@ -82,6 +97,7 @@ function MainContent() {
       const firstColor = boxes[0].bgColor;
       let allSame = true;
       document.getElementById("gameStatus").innerText = "Congrats";
+
       for (let i = 1; i < boxes.length; i++) {
         if (boxes[i].bgColor !== firstColor) {
           allSame = false;
@@ -89,8 +105,12 @@ function MainContent() {
         }
       }
       setAllColorsSame(allSame);
+      if (allColorsSame == true) {
+        console.log("DONEZO");
+        completeBox();
+      }
     }
-  }, [boxes]);
+  });
 
   /********************************************************/
 
