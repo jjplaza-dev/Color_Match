@@ -7,33 +7,32 @@ function MainContent() {
   const [colorArr, setColorArr] = useState(["green", "blue", "red", "yellow"]);
   const [allPins, setAllPins] = useState([]);
 
-  // Retrieve user progress data and current user pin from localStorage
+  // Retrieve user progress data and current user pin from localStorage -----------
   const userProgressData =
     JSON.parse(localStorage.getItem("userProgressData")) || [];
   const currentUserPin = JSON.parse(localStorage.getItem("currentUserPin"));
 
-  // Check if currentUserPin is not already in userProgressData
+  // Check if currentUserPin is not already in userProgressData -----------------
   if (!userProgressData.some((item) => item.pin === currentUserPin)) {
-    // Create an object with currentUserPin, completedBox, and timeToFinish
+    // Create an object with currentUserPin, completedBox, and timeToFinish -----
     const newProgressEntry = {
       pin: currentUserPin,
-      completedBox: 0, // Default value
-      timeToFinish: null, // Default value, can be set to a specific time later
+      completedBox: 0,
+      timeToFinish: null,
     };
 
-    // Push the new progress entry to userProgressData
+    // Push the new progress entry to userProgressData ------------------------
     userProgressData.push(newProgressEntry);
 
-    // Update localStorage with the new userProgressData
+    // Update localStorage with the new userProgressData -----------------------
     localStorage.setItem("userProgressData", JSON.stringify(userProgressData));
   }
 
-  // Find the object corresponding to the currentUserPin
+  // Find the object corresponding to the currentUserPin --------------------
   const currentUserProgress = userProgressData.find(
     (item) => item.pin === currentUserPin
   );
 
-  // Log the entire object
   if (currentUserProgress) {
     console.log("Current User Progress:", currentUserProgress);
   } else {
@@ -41,7 +40,8 @@ function MainContent() {
   }
 
   const completeBox = () => {
-    currentUserProgress.completedBox++;
+    currentUserProgress.completedBox += 1;
+    localStorage.setItem("userProgressData", JSON.stringify(userProgressData));
     console.log("Current User Progress:", currentUserProgress);
   };
 

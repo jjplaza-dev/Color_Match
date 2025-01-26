@@ -7,7 +7,6 @@ function LoginPage() {
   const navigate = useNavigate();
   const [registered, setRegistered] = useState(true);
 
-  console.log(JSON.parse(localStorage.getItem("isAdmin")));
   console.log(JSON.parse(localStorage.getItem("allAccounts")));
 
   const check = (loginUser, loginPass) => {
@@ -16,7 +15,7 @@ function LoginPage() {
         setRegistered(true);
         if (e.username == "admin") {
           localStorage.setItem("isAdmin", true);
-          navigate("/admin"); //admin page here
+          navigate("/admin");
         } else {
           localStorage.setItem("currentUserPin", e.userPin);
           navigate("/main");

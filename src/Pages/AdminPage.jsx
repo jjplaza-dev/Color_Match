@@ -5,7 +5,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 function AdminPage() {
   const navigate = useNavigate();
   console.log(JSON.parse(localStorage.getItem("allAccounts")));
-  console.log(JSON.parse(localStorage.getItem("isAdmin")));
 
   let allAccs = JSON.parse(localStorage.getItem("allAccounts")).allAccounts
     .length;
