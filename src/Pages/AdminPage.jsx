@@ -22,7 +22,18 @@ function AdminPage() {
     console.log("HI ADMIN");
     return (
       <>
-        <div>{allAccs}</div>
+        <h1 className={styles.greetings}>Hello Admin, </h1>
+        <section className={styles.statBoxMain}>
+          <div className={styles.statBox1}>
+            <div className={styles.totalAccountsRegistered}>
+              Total Accounts: {allAccs}
+            </div>
+          </div>
+          <div className={styles.statBox2}></div>
+          <div className={styles.statBox3}></div>
+          <div className={styles.statBox4}></div>
+        </section>
+
         <button onClick={logOut}>Log out</button>
       </>
     );
