@@ -29,6 +29,7 @@ function MainContent() {
   }
 
   // Find the object corresponding to the currentUserPin --------------------
+
   const currentUserProgress = userProgressData.find(
     (item) => item.pin === currentUserPin
   );
@@ -60,7 +61,7 @@ function MainContent() {
     shuffleArray(colorArr); // Execute shuffle once
   }, []);
 
-  // ---------------------------------------------------------------------------------------
+  // Adds a box --------------------------------------------------------------
 
   const [boxes, setBoxes] = useState([]);
 
@@ -89,13 +90,20 @@ function MainContent() {
 
   const [allColorsSame, setAllColorsSame] = useState(false);
 
+  // Adds all boxes --------------------------------------------------------------
+
   useEffect(() => {
     if (boxes.length < 25) {
       addBoxes();
     }
+
+    // Checks if all boxes have the same color ------------------------------------
+
     if (boxes.length > 0) {
       const firstColor = boxes[0].bgColor;
+      let checkedSquares;
       let allSame = true;
+
       document.getElementById("gameStatus").innerText = "Congrats";
 
       for (let i = 1; i < boxes.length; i++) {
@@ -103,9 +111,10 @@ function MainContent() {
           allSame = false;
           document.getElementById("gameStatus").innerText = " ";
         }
+        checkedSquares = i;
       }
       setAllColorsSame(allSame);
-      if (allColorsSame == true) {
+      if (allColorsSame == true && checkedSquares == 24) {
         console.log("DONEZO");
         completeBox();
       }
@@ -140,7 +149,8 @@ function MainContent() {
           <input onChange={updateOutput} id="inputHere" />
           <p id="outputHere">{output}</p>
 
-          <p>{localStorage.getItem("currentUserPin")}</p>
+          <p>Pin: {currentUserProgress.pin}</p>
+          <p>Completed Boxes: {currentUserProgress.completedBox}</p>
           <button>
             <a href="/main">Reset</a>
           </button>

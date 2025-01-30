@@ -38,6 +38,7 @@ function AdminPage() {
       </>
     );
   } else {
+    navigate("/login");
     return <div>Please Log In Again</div>;
   }
 }
