@@ -14,14 +14,47 @@
   color: rgb(54, 54, 54);
 }
 
+:root {
+  --fs-xl: clamp(3rem, 4vw, 6rem);
+  --fs-l: clamp(2rem, 3vw, 4rem);
+  --fs-m: clamp(1.5rem, 2vw, 3rem);
+  --fs-s: clamp(1.0rem, 1vw, 2.5rem);
+  --fs-xs: clamp(0.75rem, 0.5vw, 1.5rem);
+
+  h1{
+      font-size: var(--fs-xl);
+      font-weight: 100;
+  }
+  h2{
+      font-size: var(--fs-l);
+      font-weight: 100;
+  }
+  h3{
+      font-size: var(--fs-m);
+      font-weight: 100;
+  }
+  h4{
+      font-size: var(--fs-s);
+      font-weight: 100;
+  }
+  h5{
+      font-size: var(--fs-xs);
+      font-weight: 100;
+  }
+}
+
 body {
   width: 100%;
   height: 100%;
   background-color: rgb(187, 187, 187);
   overflow: hidden;
+
+  @media (min-width: 768px) and (max-width: 1124px) { overflow: auto; } 
+  @media (max-width: 767px) { overflow: auto;}
 }
 
 button {
   margin: 0 0;
   padding: 0px;
+  cursor: pointer;
 }

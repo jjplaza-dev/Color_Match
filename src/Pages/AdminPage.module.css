@@ -1,5 +1,5 @@
 .greetings {
-    font-size: 5em;
+    font-size: var(--fs-l);
     text-align: center;
 }
 
@@ -8,18 +8,75 @@
     height: 75vh;
     outline: auto;
     margin: auto;
-
     display: grid;
-    grid-template-columns: auto auto ;
+    grid-template-columns: 50% 50% ;
+    grid-template-rows: 50% 50%;
+
+    @media (min-width: 768px) and (max-width: 1124px) { height: 180vh; display: block; } 
+    @media (max-width: 767px) { height: 150vh; display: block;}
 
    > * {
-        width: 100%;
-        height: 100%;
+     
         outline: auto;
+        padding: 10px;
+        box-sizing: border-box;
 
-        > * {
-            position: absolute;
-        }
+        @media (min-width: 768px) and (max-width: 1124px) {width: 100%; height: 25%; } 
+        @media (max-width: 767px) {width: 100%; height: 25%; }
+
     }
 
+}
+.searchPlayerPinBox {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+
+    .searchPlayerPinInput {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            width: 15%;
+            height: 50%;
+            background-color: transparent;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: var(--fs-xs);
+            transition: all 0.2s ease-in-out;
+
+            @media (min-width: 768px) and (max-width: 1124px) {width: 15%; height: 75%;} 
+            @media (max-width: 767px) {width: 35%; height: 75%;}
+        }
+        button:hover {
+            background-color: gray;
+            border: white 1px solid;
+            color: white;
+        }
+        input {
+            height: 2em;
+            width: 50%;
+            margin-bottom: 5%;
+            padding: 0px 10px;
+            border-radius: 5px;
+        }
+    }
+    
+
+    .searchPlayerPinResult {
+        width: 100%;
+        height: 100%;
+        background-color: gray;
+        border-radius: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+        overflow: auto;
+
+        ul {
+            padding: 5px;
+        }
+    }
+    
 }

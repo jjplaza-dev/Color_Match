@@ -44,10 +44,8 @@ function RegisterPage() {
   };
   console.log(registerAcc);
 
-  const clearAccounts = () => {
-    localStorage.clear();
+  const createAdmin = () => {
     const newAccs = [{ username: "admin", password: "admin" }];
-    localStorage.setItem("userProgressData", 0);
     persistData(newAccs);
   };
   const checkAccounts = () => {
@@ -102,7 +100,7 @@ function RegisterPage() {
             </a>
             <a href="/login">Login</a>
           </button>
-          <button onClick={clearAccounts}>Reset</button>
+          <button onClick={createAdmin}>Create Admin</button>
           <button onClick={checkAccounts}>Check</button>
         </div>
       </section>
