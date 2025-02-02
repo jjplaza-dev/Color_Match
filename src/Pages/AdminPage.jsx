@@ -79,7 +79,7 @@ function AdminPage() {
                   value={searchPin}
                   onChange={(e) => setSearchPin(e.target.value)}
                 />
-                <button onClick={clearAccounts}>Delete All</button>
+                <button onClick={clearAccounts}>-- Delete All --</button>
               </div>
               <div className={styles.searchPlayerPinResult}>
                 {searchPin && (

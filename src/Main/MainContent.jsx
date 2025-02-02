@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MainContent.module.css";
+
 import ColorQueue from "../Components/ColorQueue";
 import { v4 as uuid } from "uuid";
 
@@ -34,11 +35,13 @@ function MainContent() {
     (item) => item.pin === currentUserPin
   );
 
+  /** 
   if (currentUserProgress) {
     console.log("Current User Progress:", currentUserProgress);
   } else {
     console.log("No progress found for this user pin.");
   }
+  **/
 
   const completeBox = () => {
     currentUserProgress.completedBox += 1;
