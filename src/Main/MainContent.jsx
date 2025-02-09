@@ -7,6 +7,7 @@ import { v4 as uuid } from "uuid";
 function MainContent() {
   const [colorArr, setColorArr] = useState(["green", "blue", "red", "yellow"]);
   const [allPins, setAllPins] = useState([]);
+  const [isModal, setIsModal] = useState(false);
 
   // Retrieve user progress data and current user pin from localStorage -----------
   const userProgressData =
@@ -44,6 +45,7 @@ function MainContent() {
   **/
 
   const completeBox = () => {
+    checkBtn();
     currentUserProgress.completedBox += 1;
     localStorage.setItem("userProgressData", JSON.stringify(userProgressData));
     console.log("Current User Progress:", currentUserProgress);
@@ -92,6 +94,7 @@ function MainContent() {
   };
 
   const [allColorsSame, setAllColorsSame] = useState(false);
+  const [boxCount, setBoxCount] = useState(0);
 
   // Adds all boxes --------------------------------------------------------------
 
@@ -122,7 +125,14 @@ function MainContent() {
         completeBox();
       }
     }
-  });
+  }, [boxes, allColorsSame]);
+
+  // Modal Pop up
+
+  const checkBtn = () => {
+    setIsModal(!isModal);
+    console.log(isModal);
+  };
 
   /********************************************************/
 
@@ -135,6 +145,7 @@ function MainContent() {
 
   return (
     <div className={styles.testDivBox}>
+      <ModalCovers visible={isModal} />
       <div className={styles.testProper}>
         <h4 id="gameStatus">sure</h4>
         {<ColorQueue colorArr={colorArr} />}
@@ -157,6 +168,9 @@ function MainContent() {
           <button>
             <a href="/main">Reset</a>
           </button>
+          <button onClick={checkBtn}>
+            <a>Check</a>
+          </button>
 
           <div>{outputArr}</div>
         </div>
@@ -164,5 +178,14 @@ function MainContent() {
     </div>
   );
 }
+const ModalCovers = ({ visible }) => {
+  return (
+    <div className={visible ? styles.modalTrue : styles.modalFalse}>
+      <button>
+        <a href="/main">Next Game</a>
+      </button>
+    </div>
+  );
+};
 
 export default MainContent;

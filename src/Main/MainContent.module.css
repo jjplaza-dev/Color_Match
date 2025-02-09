@@ -46,3 +46,22 @@
         transform: scale(1.1);
     }
 } 
+
+.modalTrue {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    
+    button {
+        margin: auto;
+        color: red;
+    }
+}
+.modalFalse {
+    display: none;
+} 

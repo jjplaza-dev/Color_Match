@@ -63,6 +63,7 @@ function LoginPage() {
         >
           <a>Login</a>
         </button>
+
         <button className={styles.registerBtn}>
           <a href="/register" style={{ textDecoration: "none" }}>
             Don't have an account yet?{" "}
